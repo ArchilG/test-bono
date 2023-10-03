@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Controller;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +14,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'MailsController@form')->name('mails.main');
+Route::get('/mails', 'MailsController@list')->name('mails.list');
+Route::get('/mail/{id}', 'MailsController@detail')->name('mails.detail');
+Route::post('/send', 'MailsController@send');
+Route::get('/export', 'MailsController@excelExport')->name('mails.export');
